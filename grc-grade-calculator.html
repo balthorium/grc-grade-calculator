@@ -4,24 +4,17 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>Science Department GRC Grade Calculator 2014-2015</title>
-
     <style>
         body {
             color: #666666;
             font-family: "open sans",arial,sans-serif;
-            font-weight: 400;
         }
-        h3 {
+        h3, .omg {
             font-size: 21px;
             font-weight: 400;
             margin: 24px 0 14px 0;
         }
-        .omg {
-            font-size: 21px;
-            font-weight: 400;
-        }
     </style>
-    
 </head>
 
 <body>
@@ -49,7 +42,7 @@
         </tr>
         <tr>
             <td class="omg">Overall Grade:</td>
-            <td><div class="omg" id="omg"></div></td>
+            <td><div class="omg" id="omg">?</div></td>
         </tr>
     </table>
 </form>
@@ -67,23 +60,18 @@
     };
 
     function process() {
-    var dci = parseFloat(document.getElementById("dci").value);
-    var sep = parseFloat(document.getElementById("sep").value);
-    var com = parseFloat(document.getElementById("com").value);
-    var pra = parseFloat(document.getElementById("pra").value);
+    var dci = map[parseFloat(document.getElementById("dci").value)];
+    var sep = map[parseFloat(document.getElementById("sep").value)];
+    var com = map[parseFloat(document.getElementById("com").value)];
+    var pra = map[parseFloat(document.getElementById("pra").value)];
     
-    dci = map[dci];
-    sep = map[sep];
-    com = map[com];
-    pra = map[pra];
-
     var omg = document.getElementById("omg");
     var grade = 0.5*dci + 0.2*sep + 0.2*com + 0.1*pra;
     if (!isNaN(grade)) {
         omg.innerHTML = grade;
     }
     else {
-        omg.innerHTML = "";
+        omg.innerHTML = "?";
     }
 }
 </script>
