@@ -48,7 +48,7 @@
 </form>
 
 <script>
-    var map = {
+    var decoderRing = {
         4: 100,
         3.5: 92,
         3: 85,
@@ -58,22 +58,26 @@
         1: 50,
         0: 0
     };
+    
+    var weights = {
+        "dci": 0.5,
+        "sep": 0.2,
+        "com": 0.2,
+        "pra": 0.1
+    }
 
     function process() {
-    var dci = map[parseFloat(document.getElementById("dci").value)];
-    var sep = map[parseFloat(document.getElementById("sep").value)];
-    var com = map[parseFloat(document.getElementById("com").value)];
-    var pra = map[parseFloat(document.getElementById("pra").value)];
-    
-    var omg = document.getElementById("omg");
-    var grade = 0.5*dci + 0.2*sep + 0.2*com + 0.1*pra;
-    if (!isNaN(grade)) {
-        omg.innerHTML = grade;
+        var grade = 0.0;
+        for (var cat in weights) {
+            grade += decoderRing[parseFloat(document.getElementById(cat).value)] * weights[cat];
+        }
+        if (!isNaN(grade)) {
+            document.getElementById("omg").innerHTML = Math.round(grade*10)/10;
+        }
+        else {
+            document.getElementById("omg").innerHTML = "?";
+        }
     }
-    else {
-        omg.innerHTML = "?";
-    }
-}
 </script>
     
 </div>
