@@ -9,15 +9,16 @@
         body {
             color: #666666;
             font-family: "open sans",arial,sans-serif;
+            font-weight: 400;
         }
         h3 {
             font-size: 21px;
             font-weight: 400;
             margin: 24px 0 14px 0;
         }
-        input {
-            color: #00FF00
-            
+        .omg {
+            font-size: 21px;
+            font-weight: 400;
         }
     </style>
     
@@ -27,7 +28,7 @@
 <div align="center">
     
 <h3>Science Department GRC Grade Calculator 2014-2015</h3>
-
+<hr/>
 <form>
     <table>
     <tr>
@@ -47,8 +48,8 @@
             <td><input id="pra" type="text" oninput="process()"/></td>
         </tr>
         <tr>
-            <td><b>Overall Grade:</b></td>
-            <td><b><input id="omg" type="text" oninput="process()" readonly/></b></td>
+            <td class="omg">Overall Grade:</td>
+            <td><div class="omg" id="omg"></div></td>
         </tr>
     </table>
 </form>
@@ -79,7 +80,10 @@
     var omg = document.getElementById("omg");
     var grade = 0.5*dci + 0.2*sep + 0.2*com + 0.1*pra;
     if (!isNaN(grade)) {
-        omg.value = grade;
+        omg.innerHTML = grade;
+    }
+    else {
+        omg.innerHTML = "";
     }
 }
 </script>
